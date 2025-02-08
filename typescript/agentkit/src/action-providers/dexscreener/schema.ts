@@ -7,16 +7,14 @@ export const GetPairsByChainAndPairSchema = z
   })
   .strict();
 
+export const GetTokenPairsSchema = z
+  .object({
+    tokenAddresses: z.array(z.string()).describe("List of the token addresses"),
+  })
+  .strict();
+
 export const SearchPairsSchema = z
   .object({
     query: z.string().describe("The search query string"),
   })
   .strict();
-
-export const GetTokenPairsSchema = z
-  .object({
-    tokenAddresses: z.array(z.string()).max(10).describe("List of the token addresses"),
-  })
-  .strict();
-
-  
