@@ -18,7 +18,7 @@ describe("DexscreenerActionProvider", () => {
       fetchMock.mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockResponse) });
 
       const result = await provider.getPairsByChainAndPair({ chainId: "solana", pairId: "So11111111111111111111111111111111111111112,EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" });
-      expect(result).toEqual(mockResponse.pairs);
+      expect(result).toEqual(JSON.stringify(mockResponse.pairs));
     });
 
     it("should throw an error when API response is not ok", async () => {
@@ -40,7 +40,7 @@ describe("DexscreenerActionProvider", () => {
       fetchMock.mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockResponse) });
 
       const result = await provider.getTokenPairsByTokenAddress({ chainId: "solana", tokenAddresses: ["So11111111111111111111111111111111111111112,EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"] });
-      expect(result).toEqual(mockResponse);
+      expect(result).toEqual(JSON.stringify(mockResponse));
     });
 
     it("should throw an error when API response is not ok", async () => {
@@ -58,7 +58,7 @@ describe("DexscreenerActionProvider", () => {
       fetchMock.mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockResponse) });
 
       const result = await provider.searchPairs({ query: "SOL/USDC" });
-      expect(result).toEqual(mockResponse.pairs);
+      expect(result).toEqual(JSON.stringify(mockResponse.pairs));
     });
 
     it("should throw an error when API response is not ok", async () => {

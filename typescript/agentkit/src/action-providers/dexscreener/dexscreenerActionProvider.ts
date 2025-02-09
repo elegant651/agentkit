@@ -36,7 +36,7 @@ export class DexscreenerActionProvider extends ActionProvider {
     if (pairs.length === 0) {
       throw new Error(`No pairs found for chainId: ${args.chainId} / pairId: ${args.pairId}`);
     }
-    return pairs
+    return JSON.stringify(pairs)
   }
 
   /**
@@ -57,7 +57,8 @@ export class DexscreenerActionProvider extends ActionProvider {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return await response.json();
+    const pairs = await response.json();
+    return JSON.stringify(pairs)
   }
 
   /**
@@ -82,7 +83,7 @@ export class DexscreenerActionProvider extends ActionProvider {
     if (pairs.length === 0) {
       throw new Error(`No token pair found for ${args.query}`);
     }
-    return pairs
+    return JSON.stringify(pairs)
   }
 
   /**
