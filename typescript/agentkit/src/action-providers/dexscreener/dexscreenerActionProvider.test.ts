@@ -30,19 +30,17 @@ describe("DexscreenerActionProvider", () => {
     it("should throw an error when no pairs are found", async () => {
       fetchMock.mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue({ pairs: [] }) });
       await expect(provider.getPairsByChainAndPair({ chainId: "solana", pairId: "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN" }))
-        .rejects.toThrow("No pairs found for chainId / pairId");
+        .rejects.toThrow("No pairs found for chainId: solana / pairId: JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN");
     });
   });
 
   describe("getTokenPairsByTokenAddress", () => {
     it("should return token pairs when API call is successful", async () => {
-      const mockResponse = { 
-        data: [{ chainId: "solana", pairAddress: "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN" }]
-      };
+      const mockResponse = [{ chainId: "solana", pairAddress: "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN" }];
       fetchMock.mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockResponse) });
 
       const result = await provider.getTokenPairsByTokenAddress({ chainId: "solana", tokenAddresses: ["So11111111111111111111111111111111111111112,EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"] });
-      expect(result).toEqual(mockResponse.data);
+      expect(result).toEqual(mockResponse);
     });
 
     it("should throw an error when API response is not ok", async () => {

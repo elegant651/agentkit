@@ -71,7 +71,7 @@ export class DexscreenerActionProvider extends ActionProvider {
     description: "Search for pairs matching a query string on Dexscreener",
     schema: SearchPairsSchema
   })
-  async searchPairs(args: z.infer<typeof SearchPairsSchema): Promise<string> {
+  async searchPairs(args: z.infer<typeof SearchPairsSchema>): Promise<string> {
     const url = `https://api.dexscreener.com/latest/dex/search?q=${encodeURIComponent(args.query)}`;
     const response = await fetch(url);
     if (!response.ok) {
