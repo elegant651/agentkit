@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { ActionProvider } from "../actionProvider";
 import { CreateAction } from "../actionDecorator";
-import { GetPairsByChainAndPairSchema, GetTokenPairsSchema, SearchPairsSchema } from "./schema";
+import { GetPairsByChainAndPairSchema, GetTokenPairsSchema, SearchPairsSchema } from "./schemas";
 
 /**
  * DexscreenerActionProvider is an action provider for Dexscreener.
